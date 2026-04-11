@@ -75,11 +75,14 @@ nav a:hover {
   height: auto;
 }
 .projects article {
-  display: grid;
-  grid-template-rows: subgrid;
-  grid-row: span 3;
-  gap: 1em;
+  padding: 1em;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
+.projects article:hover {
+  transform: translateY(-4px);
+}
+
 .projects h2 {
   margin: 0;
 }
