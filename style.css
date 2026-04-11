@@ -76,9 +76,9 @@ nav a:hover {
 }
 .projects article {
   padding: 1em;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  background-color: #fafafa;
 }
+
 .projects article:hover {
   transform: translateY(-4px);
 }
