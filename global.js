@@ -7,9 +7,7 @@ function $$(selector, context = document) {
 let navLinks = $$("nav a");
 
 let currentLink = navLinks.find((a) => {
-  let linkPath = a.pathname.replace(/index\.html$/, "");
-  let pagePath = location.pathname.replace(/index\.html$/, "");
-  return a.host === location.host && linkPath === pagePath;
+  return location.pathname.endsWith(a.getAttribute("href"));
 });
 
 if (currentLink) {
