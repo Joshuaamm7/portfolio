@@ -123,4 +123,9 @@ nav a:hover {
   top: 1rem;
   right: 1rem;
   font-size: 80%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  grid-column: auto;
+  grid-template-columns: none;
 }
