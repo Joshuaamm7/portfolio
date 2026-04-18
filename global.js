@@ -16,6 +16,40 @@ let pages = [
   { url: "resume/", title: "Resume" },
   { url: "https://github.com/joshuaamm7", title: "GitHub" },
 ];
+document.body.insertAdjacentHTML(
+  "afterbegin",
+  `
+  <label class="color-scheme">
+    Theme:
+    <select>
+      <option value="light dark">Automatic</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  </label>
+`
+);
+
+let select = document.querySelector(".color-scheme select");
+
+function setColorScheme(colorScheme) {
+  document.documentElement.style.setProperty("color-scheme", colorScheme);
+  select.value = colorScheme;
+}
+
+
+select.addEventListener("input", function (event) {
+  let value = event.target.value;
+
+  setColorScheme(value);
+
+  localStorage.colorScheme = value;
+});
+
+
+if ("colorScheme" in localStorage) {
+  setColorScheme(localStorage.colorScheme);
+}
 
 let nav = document.createElement("nav");
 document.body.prepend(nav);
