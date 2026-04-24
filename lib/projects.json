@@ -1,7 +1,7 @@
 [
     {
         "title": "Energy Dashboard",
-        "image": "../image/energydash.png",
+        "image": "./image/energydash.png",
         "description": "This project combines IEA oil import/export data with global EV sales figures across 50+ countries spanning 1971–2023 for oil trade and 2010–2030 for EV sales. Forecasts extend through 2035 using ARIMA and logistic S-curve models."
     },
     {
