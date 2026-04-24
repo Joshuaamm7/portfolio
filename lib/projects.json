@@ -1,0 +1,62 @@
+[
+    {
+        "title": "Energy Dashboard",
+        "image": "../image/energydash.png",
+        "description": "This project combines IEA oil import/export data with global EV sales figures across 50+ countries spanning 1971–2023 for oil trade and 2010–2030 for EV sales. Forecasts extend through 2035 using ARIMA and logistic S-curve models."
+    },
+    {
+        "title": "2 Lorem dolor sit",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet..."
+    },
+    {
+        "title": "3 Lorem ipsum dolor sit",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet..."
+    },
+    {
+        "title": "4 Lorem ipsum dolor sit",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet..."
+    },
+    {
+        "title": "5 Lorem ipsum dolor sit",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet..."
+    },
+    {
+        "title": "6 Lorem ipsum dolor sit",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet..."
+    },
+    {
+        "title": "7 Lorem ipsum dolor sit",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet..."
+    },
+    {
+        "title": "8 Lorem ipsum dolor sit",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet..."
+    },
+    {
+        "title": "9 Lorem ipsum dolor sit",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet..."
+    },
+    {
+        "title": "10 Lorem ipsum dolor sit",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet..."
+    },
+    {
+        "title": "11 Lorem ipsum dolor sit",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet..."
+    },
+    {
+        "title": "12 Lorem ipsum dolor sit",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Lorem ipsum dolor sit amet..."
+    }
+]
