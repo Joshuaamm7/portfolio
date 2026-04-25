@@ -14,20 +14,20 @@
     {
         "title": "NourishOne - Find your food pantry",
         "year": "2026",
-        "image": "no.png",
+        "image": "image/no.png",
         "description": "NourishOne is a static React web app that helps people in the DC, Maryland, and Virginia region find food assistance. It aggregates 737 verified food pantry locations into a searchable, filterable, map-driven interface for Donors, Food Pantry, and Volunteers "
     },
     {
         "title": "Baron or Dragons? League of Legends",
         "year":"2026",
-        "image": "BR.png",
+        "image": "image/br1.png",
         "description": "Dragons or Baron? Modeling Objective Control and Win Probability in League of Legends, understanding how different objectives influence the probability of winning can provide insight into effective gameplay strategies."
     },
     {
-        "title": "5 Lorem ipsum dolor sit",
+        "title": "Ticket Fetcher",
         "year":"2026",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor sit amet..."
+        "description": "Automated Ticket Fetcher for conecert."
     },
     {
         "title": "6 Lorem ipsum dolor sit",
