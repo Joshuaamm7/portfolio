@@ -2,25 +2,25 @@
     {
         "title": "Energy Dashboard",
         "year": "2026",
-        "image": "/image/energydash.png",
+        "image": "image/energydash.png",
         "description": "This project combines IEA oil import/export data with global EV sales figures across 50+ countries spanning 1971–2023 for oil trade and 2010–2030 for EV sales. Forecasts extend through 2035 using ARIMA and logistic S-curve models."
     },
     {
         "title": "NBA Call-Up Predictor",
         "year": "2025",
-        "image": "/image/pre.png",
+        "image": "image/pre.png",
         "description": "full-stack system using an automated SportsRadar API ETL pipeline to aggregate player statistics, official contract logs, and team rosters across 5 seasons to predict G-Leagues Player's call up rate to a NBA teams."
     },
     {
         "title": "NourishOne - Find your food pantry",
         "year": "2026",
-        "image": "/image/no.png",
+        "image": "image/no.png",
         "description": "NourishOne is a static React web app that helps people in the DC, Maryland, and Virginia region find food assistance. It aggregates 737 verified food pantry locations into a searchable, filterable, map-driven interface for Donors, Food Pantry, and Volunteers "
     },
     {
         "title": "LOL Baron or Dragons",
         "year":"2026",
-        "image": "/image/br1.png",
+        "image": "image/br1.png",
         "description": "Dragons or Baron? Modeling Objective Control and Win Probability in League of Legends, understanding how different objectives influence the probability of winning can provide insight into effective gameplay strategies."
     },
     {
