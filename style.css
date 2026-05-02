@@ -162,6 +162,21 @@ nav a:hover {
   max-width: 20em;
   overflow: visible;
 }
+#projects-pie-plot path {
+  transition: 300ms;
+}
+
+#projects-pie-plot:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
+}
+.selected {
+  --color: oklch(60% 45% 0) !important;
+}
+
+.selected:is(path) {
+  fill: var(--color);
+}
+
 
 .legend {
   flex: 1;
@@ -186,4 +201,25 @@ nav a:hover {
   aspect-ratio: 1 / 1;
   background-color: var(--color);
   border-radius: 0.2em;
+}
+.searchBar {
+  display: block;
+  width: 100%;
+  max-width: 35em;
+  padding: 0.75em 1em;
+  margin-block: 1.5em;
+  font-size: 1.1rem;
+  border: 2px solid var(--color-accent);
+  border-radius: 0.5em;
+  background-color: canvas;
+  color: canvastext;
+}
+
+.searchBar::placeholder {
+  color: color-mix(in oklch, canvastext, canvas 45%);
+}
+
+.searchBar:focus {
+  outline: 3px solid color-mix(in oklch, var(--color-accent), canvas 60%);
+  outline-offset: 2px;
 }

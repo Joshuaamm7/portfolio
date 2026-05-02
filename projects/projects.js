@@ -9,6 +9,10 @@ const projectsContainer = document.querySelector('.projects');
 const titleElement = document.querySelector('.projects-title');
 const searchInput = document.querySelector('.searchBar');
 
+// State variables
+let query = '';
+let selectedIndex = -1;
+
 // Render projects on page load
 renderProjects(projects, projectsContainer, 'h2');
 titleElement.textContent = `Projects (${projects.length})`;
@@ -40,18 +44,46 @@ function renderPieChart(projectsGiven) {
   legend.selectAll('li').remove();
 
   // Add new pie slices
-  arcs.forEach((arc, idx) => {
+  arcs.forEach((arc, i) => {
     svg
       .append('path')
       .attr('d', arc)
-      .attr('fill', colors(idx));
+      .attr('fill', colors(i))
+      .attr('class', i === selectedIndex ? 'selected' : '')
+      .on('click', () => {
+        selectedIndex = selectedIndex === i ? -1 : i;
+
+        svg
+          .selectAll('path')
+          .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+
+        legend
+          .selectAll('li')
+          .attr('class', (_, idx) =>
+            idx === selectedIndex ? 'legend-item selected' : 'legend-item'
+          );
+
+        if (selectedIndex === -1) {
+          renderProjects(projectsGiven, projectsContainer, 'h2');
+          titleElement.textContent = `Projects (${projectsGiven.length})`;
+        } else {
+          let selectedYear = data[selectedIndex].label;
+
+          let filteredProjects = projectsGiven.filter((project) =>
+            String(project.year) === String(selectedYear)
+          );
+
+          renderProjects(filteredProjects, projectsContainer, 'h2');
+          titleElement.textContent = `Projects (${filteredProjects.length})`;
+        }
+      });
   });
 
   // Add new legend items
   data.forEach((d, idx) => {
     legend
       .append('li')
-      .attr('class', 'legend-item')
+      .attr('class', idx === selectedIndex ? 'legend-item selected' : 'legend-item')
       .attr('style', `--color: ${colors(idx)}`)
       .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
   });
@@ -61,13 +93,7 @@ function renderPieChart(projectsGiven) {
 renderPieChart(projects);
 
 // Search functionality
-let query = '';
-
-console.log('searchInput:', searchInput);
-
 searchInput.addEventListener('input', (event) => {
-  console.log('typing:', event.target.value);
-
   query = event.target.value.toLowerCase();
 
   let filteredProjects = projects.filter((project) => {
@@ -75,11 +101,10 @@ searchInput.addEventListener('input', (event) => {
     return values.includes(query);
   });
 
-  console.log('filteredProjects:', filteredProjects);
-
   renderProjects(filteredProjects, projectsContainer, 'h2');
 
   titleElement.textContent = `Projects (${filteredProjects.length})`;
 
+  selectedIndex = -1;
   renderPieChart(filteredProjects);
 });
