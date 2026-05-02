@@ -1,7 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-accent: oklch(65.602% 0.09892 120.137);
+}
+
+html {
+  accent-color: var(--color-accent);
+  color-scheme: light dark;
+}
+
 body {
   max-width: 100ch;
   margin: 0 auto;
   padding: 0.5rem 1rem;
+  background-color: canvas;
+  color: canvastext;
 }
 
 input,
@@ -11,6 +26,7 @@ select {
   font: inherit;
 }
 
+/* Form styling */
 form {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -29,26 +45,20 @@ button {
   margin: 1em auto;
 }
 
-:root{
-    --color-accent: oklch(65.602% 0.09892 120.137);
-} /* --root for whole doc> */
-
-html {
-  accent-color: var(--color-accent);
-}
-
+/* Navigation */
 nav ul,
 nav li {
   display: contents;
 }
 
 nav {
+  --border-color: oklch(50% 10% 200 / 40%);
   display: flex;
   gap: 1rem;
   padding: 0.5rem 0;
   align-items: center;
   font-size: 2rem;
-  border-bottom: 1px solid oklch(80% 3% 200);
+  border-bottom: 1px solid var(--border-color);
 }
 
 nav a {
@@ -58,6 +68,7 @@ nav a {
   text-align: center;
   padding: 0.5em;
 }
+
 nav a.current {
   border-bottom: 0.4em solid var(--color-accent);
   padding-bottom: 0.1em;
@@ -65,29 +76,10 @@ nav a.current {
 
 nav a:hover {
   border-bottom: 0.4em solid var(--color-accent);
-  background-color: oklch(from var(--color-accent) 95% 5% h);
-}
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-  gap: 1em;
-}
-.projects img {
-  width: 100%;
-  height: auto;
-}
-.projects article {
-  padding: 1em;
-  background-color: color-mix(in oklch, canvas, canvastext 5%);
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
-.projects article:hover {
-  transform: translateY(-4px);
-}
-
-.projects h2 {
-  margin: 0;
-}
+/* Headings */
 h1 {
   font-size: 400%;
 }
@@ -101,24 +93,8 @@ h6 {
   line-height: 1.1;
   text-wrap: balance;
 }
-html {
-  color-scheme: light dark;
-}
 
-body {
-  background-color: canvas;
-  color: canvastext;
-}
-
-nav {
-  --border-color: oklch(50% 10% 200 / 40%);
-  border-bottom: 1px solid var(--border-color);
-}
-
-nav a:hover {
-  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
-}
-
+/* Theme selector */
 .color-scheme {
   position: absolute;
   top: 1rem;
@@ -131,6 +107,7 @@ nav a:hover {
   grid-template-columns: none;
 }
 
+/* Profile stats */
 #profile-stats dl {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -150,7 +127,32 @@ nav a:hover {
   font-size: 2rem;
 }
 
+/* Projects grid */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1em;
+}
 
+.projects img {
+  width: 100%;
+  height: auto;
+}
+
+.projects article {
+  padding: 1em;
+  background-color: color-mix(in oklch, canvas, canvastext 5%);
+}
+
+.projects article:hover {
+  transform: translateY(-4px);
+}
+
+.projects h2 {
+  margin: 0;
+}
+
+/* Pie chart and legend */
 .chart-container {
   display: flex;
   align-items: center;
@@ -162,13 +164,16 @@ nav a:hover {
   max-width: 20em;
   overflow: visible;
 }
+
 #projects-pie-plot path {
   transition: 300ms;
+  cursor: pointer;
 }
 
 #projects-pie-plot:has(path:hover) path:not(:hover) {
   opacity: 0.5;
 }
+
 .selected {
   --color: oklch(60% 45% 0) !important;
 }
@@ -176,7 +181,6 @@ nav a:hover {
 .selected:is(path) {
   fill: var(--color);
 }
-
 
 .legend {
   flex: 1;
@@ -202,6 +206,8 @@ nav a:hover {
   background-color: var(--color);
   border-radius: 0.2em;
 }
+
+/* Search bar */
 .searchBar {
   display: block;
   width: 100%;
@@ -222,4 +228,16 @@ nav a:hover {
 .searchBar:focus {
   outline: 3px solid color-mix(in oklch, var(--color-accent), canvas 60%);
   outline-offset: 2px;
+}
+
+/* Responsive chart layout */
+@media (max-width: 700px) {
+  .chart-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #projects-pie-plot {
+    align-self: center;
+  }
 }
