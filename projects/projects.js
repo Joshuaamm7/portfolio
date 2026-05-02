@@ -63,15 +63,20 @@ renderPieChart(projects);
 // Search functionality
 let query = '';
 
+console.log('searchInput:', searchInput);
+
 searchInput.addEventListener('input', (event) => {
-  query = event.target.value;
+  console.log('typing:', event.target.value);
+
+  query = event.target.value.toLowerCase();
 
   let filteredProjects = projects.filter((project) => {
     let values = Object.values(project).join('\n').toLowerCase();
-    return values.includes(query.toLowerCase());
+    return values.includes(query);
   });
 
-  projectsContainer.innerHTML = '';
+  console.log('filteredProjects:', filteredProjects);
+
   renderProjects(filteredProjects, projectsContainer, 'h2');
 
   titleElement.textContent = `Projects (${filteredProjects.length})`;
