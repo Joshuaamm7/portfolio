@@ -241,3 +241,20 @@ h6 {
     align-self: center;
   }
 }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+  gap: 1rem;
+  margin-block: 2rem;
+}
+
+.stats dt {
+  font-weight: bold;
+  color: color-mix(in oklch, canvastext, canvas 35%);
+}
+
+.stats dd {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
