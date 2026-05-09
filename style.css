@@ -26,7 +26,8 @@ select {
   font: inherit;
 }
 
-/* Form styling */
+/* ─── Form ─────────────────────────────────────────────── */
+
 form {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -45,11 +46,7 @@ button {
   margin: 1em auto;
 }
 
-/* Navigation */
-nav ul,
-nav li {
-  display: contents;
-}
+/* ─── Navigation ────────────────────────────────────────── */
 
 nav {
   --border-color: oklch(50% 10% 200 / 40%);
@@ -59,6 +56,11 @@ nav {
   align-items: center;
   font-size: 2rem;
   border-bottom: 1px solid var(--border-color);
+}
+
+nav ul,
+nav li {
+  display: contents;
 }
 
 nav a {
@@ -79,7 +81,8 @@ nav a:hover {
   background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
-/* Headings */
+/* ─── Headings ──────────────────────────────────────────── */
+
 h1 {
   font-size: 400%;
 }
@@ -94,7 +97,8 @@ h6 {
   text-wrap: balance;
 }
 
-/* Theme selector */
+/* ─── Theme selector ────────────────────────────────────── */
+
 .color-scheme {
   position: absolute;
   top: 1rem;
@@ -107,7 +111,8 @@ h6 {
   grid-template-columns: none;
 }
 
-/* Profile stats */
+/* ─── Profile stats ─────────────────────────────────────── */
+
 #profile-stats dl {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -127,7 +132,8 @@ h6 {
   font-size: 2rem;
 }
 
-/* Projects grid */
+/* ─── Projects grid ─────────────────────────────────────── */
+
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
@@ -152,7 +158,8 @@ h6 {
   margin: 0;
 }
 
-/* Pie chart and legend */
+/* ─── Pie chart & legend ────────────────────────────────── */
+
 .chart-container {
   display: flex;
   align-items: center;
@@ -207,7 +214,8 @@ h6 {
   border-radius: 0.2em;
 }
 
-/* Search bar */
+/* ─── Search bar ────────────────────────────────────────── */
+
 .searchBar {
   display: block;
   width: 100%;
@@ -230,17 +238,8 @@ h6 {
   outline-offset: 2px;
 }
 
-/* Responsive chart layout */
-@media (max-width: 700px) {
-  .chart-container {
-    flex-direction: column;
-    align-items: stretch;
-  }
+/* ─── Stats ─────────────────────────────────────────────── */
 
-  #projects-pie-plot {
-    align-self: center;
-  }
-}
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
@@ -258,6 +257,9 @@ h6 {
   font-size: 2rem;
   font-weight: bold;
 }
+
+/* ─── Gridlines ─────────────────────────────────────────── */
+
 .gridlines line {
   stroke: currentColor;
   stroke-opacity: 0.15;
@@ -266,6 +268,8 @@ h6 {
 .gridlines path {
   display: none;
 }
+
+/* ─── Tooltip & info ────────────────────────────────────── */
 
 .info {
   display: grid;
@@ -287,29 +291,6 @@ h6 {
   position: fixed;
   top: 1em;
   left: 1em;
-  background: canvas;
-  color: canvastext;
-  border: 1px solid color-mix(in oklch, canvastext, canvas 70%);
-  border-radius: 0.5rem;
-  padding: 1rem;
-  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 0.2);
-  z-index: 10;
-}
-
-circle {
-  transition: 200ms;
-  transform-origin: center;
-  transform-box: fill-box;
-}
-
-circle:hover {
-  transform: scale(1.5);
-}
-
-
-
-.tooltip {
-  position: fixed;
   background: color-mix(in oklch, canvas, canvastext 5%);
   color: canvastext;
   border: 1px solid color-mix(in oklch, canvastext, canvas 75%);
@@ -330,6 +311,8 @@ dl.info[hidden]:not(:hover, :focus-within) {
   visibility: hidden;
 }
 
+/* ─── Circles (scatter plot) ────────────────────────────── */
+
 circle {
   transition: 200ms;
   transform-origin: center;
@@ -339,6 +322,13 @@ circle {
 circle:hover {
   transform: scale(1.5);
 }
+
+circle.selected {
+  fill: #ff6b6b;
+}
+
+/* ─── Brush selection ───────────────────────────────────── */
+
 @keyframes marching-ants {
   to {
     stroke-dashoffset: -8;
@@ -353,6 +343,15 @@ circle:hover {
   animation: marching-ants 2s linear infinite;
 }
 
-circle.selected {
-  fill: #ff6b6b;
+/* ─── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  .chart-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #projects-pie-plot {
+    align-self: center;
+  }
 }
