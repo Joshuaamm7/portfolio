@@ -266,3 +266,93 @@ h6 {
 .gridlines path {
   display: none;
 }
+
+.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1rem;
+  margin: 0;
+}
+
+.info dt {
+  color: color-mix(in oklch, canvastext, canvas 40%);
+  font-weight: bold;
+}
+
+.info dd {
+  margin: 0;
+}
+
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  background: canvas;
+  color: canvastext;
+  border: 1px solid color-mix(in oklch, canvastext, canvas 70%);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 0.2);
+  z-index: 10;
+}
+
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+
+
+.tooltip {
+  position: fixed;
+  background: color-mix(in oklch, canvas, canvastext 5%);
+  color: canvastext;
+  border: 1px solid color-mix(in oklch, canvastext, canvas 75%);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.18);
+  backdrop-filter: blur(0.5rem);
+  z-index: 10;
+}
+
+dl.info {
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8;
+  }
+}
+
+.selection {
+  fill-opacity: 0.1;
+  stroke: currentColor;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+
+circle.selected {
+  fill: #ff6b6b;
+}
