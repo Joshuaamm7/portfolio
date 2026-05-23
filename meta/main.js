@@ -1,4 +1,5 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
 
 // Module-level scale references so renderScatterPlot and updateScatterPlot share them
 let xScale, yScale;
@@ -259,6 +260,7 @@ function brushed(event) {
 
 let data = await loadData();
 let commits = processCommits(data);
+commits = d3.sort(commits, (d) => d.datetime);
 
 function updateTooltipVisibility(isVisible) {
   const tooltip = document.getElementById('commit-tooltip');
@@ -421,3 +423,65 @@ function updateFileDisplay(commits) {
     .attr('class', 'loc')
     .attr('style', (d) => `--color: ${colors(d.type)}`);
 }
+
+d3.select('#scatter-story')
+  .selectAll('.step')
+  .data(commits)
+  .join('div')
+  .attr('class', 'step')
+  .html(
+    (d, i) => `
+      <p>
+        On ${d.datetime.toLocaleString('en', {
+          dateStyle: 'full',
+          timeStyle: 'short',
+        })},
+        I made <a href="${d.url}" target="_blank">${
+          i > 0 ? 'another commit' : 'my first commit'
+        }</a>.
+      </p>
+
+      <p>
+        I edited ${d.totalLines} lines across ${
+          d3.rollups(
+            d.lines,
+            (D) => D.length,
+            (d) => d.file,
+          ).length
+        } files.
+      </p>
+    `,
+  );
+  function onStepEnter(response) {
+  d3.selectAll('.step').classed('is-active', false);
+  d3.select(response.element).classed('is-active', true);
+
+  const commit = response.element.__data__;
+  commitMaxTime = commit.datetime;
+
+  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+
+  updateScatterPlot(data, filteredCommits);
+  updateFileDisplay(filteredCommits);
+
+  d3.select('#commit-time').text(
+    commitMaxTime.toLocaleString('en', {
+      dateStyle: 'long',
+      timeStyle: 'short',
+    }),
+  );
+
+  d3.select('#commit-progress').property(
+    'value',
+    timeScale(commitMaxTime),
+  );
+}
+
+const scroller = scrollama();
+
+scroller
+  .setup({
+    container: '#scrolly-1',
+    step: '#scrolly-1 .step',
+  })
+  .onStepEnter(onStepEnter);
