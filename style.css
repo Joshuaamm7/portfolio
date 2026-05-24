@@ -315,9 +315,8 @@ dl.info[hidden]:not(:hover, :focus-within) {
 
 .meta-header {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.8fr);
-  gap: 2rem;
-  align-items: start;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
   margin-bottom: 3rem;
 }
 
@@ -326,21 +325,36 @@ dl.info[hidden]:not(:hover, :focus-within) {
 }
 
 .meta-stats-panel {
-  position: sticky;
-  top: 1rem;
-  align-self: start;
+  position: static;
+  width: 100%;
 }
 
-#stats dt {
+#stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.stat-card {
+  padding: 1rem;
+  border: 1px solid color-mix(in oklch, currentColor 15%, transparent);
+  border-radius: 12px;
+  background: color-mix(in oklch, currentColor 5%, transparent);
+}
+
+.stat-card dt {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  opacity: 0.7;
+  opacity: 0.65;
 }
 
-#stats dd {
+.stat-card dd {
   margin: 0;
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
-  font-weight: 700;
-  line-height: 1.05;
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.1;
 }
 
 /* ─── Time slider ───────────────────────────────────────── */
@@ -549,14 +563,6 @@ circle.selected {
 /* ─── Responsive (meta page) ─────────────────────────────── */
 
 @media (max-width: 900px) {
-  .meta-header {
-    grid-template-columns: 1fr;
-  }
-
-  .meta-stats-panel {
-    position: static;
-  }
-
   #scrolly-1 {
     grid-template-columns: 1fr;
   }

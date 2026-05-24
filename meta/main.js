@@ -50,17 +50,15 @@ function processCommits(data) {
 }
 
 function renderCommitInfo(data, commits) {
-  const dl = d3.select('#stats').append('dl').attr('class', 'stats');
+  const container = d3.select('#stats');
 
-  dl.append('dt').html('Total <abbr title="Lines of code">LOC</abbr>');
-  dl.append('dd').text(data.length);
-
-  dl.append('dt').text('Total commits');
-  dl.append('dd').text(commits.length);
+  function addStat(labelHtml, value) {
+    const card = container.append('div').attr('class', 'stat-card');
+    card.append('dt').html(labelHtml);
+    card.append('dd').text(value);
+  }
 
   const numFiles = d3.group(data, (d) => d.file).size;
-  dl.append('dt').text('Files');
-  dl.append('dd').text(numFiles);
 
   const fileLengths = d3.rollups(
     data,
@@ -68,16 +66,8 @@ function renderCommitInfo(data, commits) {
     (d) => d.file
   );
   const averageFileLength = d3.mean(fileLengths, (d) => d[1]);
-  dl.append('dt').text('Average file length');
-  dl.append('dd').text(`${averageFileLength.toFixed(1)} lines`);
-
   const averageLineLength = d3.mean(data, (d) => d.length);
-  dl.append('dt').text('Average line length');
-  dl.append('dd').text(`${averageLineLength.toFixed(1)} characters`);
-
   const maxDepth = d3.max(data, (d) => d.depth);
-  dl.append('dt').text('Maximum depth');
-  dl.append('dd').text(maxDepth);
 
   const workByPeriod = d3.rollups(
     data,
@@ -85,8 +75,14 @@ function renderCommitInfo(data, commits) {
     (d) => d.datetime.toLocaleString('en', { dayPeriod: 'short' })
   );
   const maxPeriod = d3.greatest(workByPeriod, (d) => d[1])?.[0];
-  dl.append('dt').text('Most active time');
-  dl.append('dd').text(maxPeriod);
+
+  addStat('Total <abbr title="Lines of code">LOC</abbr>', data.length);
+  addStat('Total commits', commits.length);
+  addStat('Files', numFiles);
+  addStat('Avg file length', `${averageFileLength.toFixed(1)} lines`);
+  addStat('Avg line length', `${averageLineLength.toFixed(1)} chars`);
+  addStat('Max depth', maxDepth);
+  addStat('Most active time', maxPeriod);
 }
 
 
