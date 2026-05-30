@@ -3,8 +3,8 @@ import { fetchJSON, renderProjects, fetchGitHubData} from './global.js';
 // Fetch all projects
 const projects = await fetchJSON('./lib/projects.json');
 
-// Get first 3 projects
-const latestProjects = projects.slice(0, 3);
+// Get first 4 projects
+const latestProjects = projects.slice(0, 4);
 
 // Select container on homepage
 const projectsContainer = document.querySelector('.projects');

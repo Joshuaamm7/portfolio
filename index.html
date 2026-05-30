@@ -3,61 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joshua Huang: Personal site and portfolio </title>
+    <title>Joshua Huang — Data Science Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="global.js"></script>
-    
     <script src="index.js" type="module" defer></script>
+    <style>
+      /* ── Hero ──────────────────────────────────────────────── */
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2.5rem;
+        align-items: center;
+        padding: 2rem 0 2.25rem;
+        margin-bottom: 2.5rem;
+        border-bottom: 1px solid color-mix(in oklch, currentColor 12%, transparent);
+      }
+
+      .hero h1 {
+        font-size: clamp(2.25rem, 5vw, 3.5rem);
+        margin: 0 0 0.3rem;
+        line-height: 1.1;
+      }
+
+      .hero-tagline {
+        font-size: 1.05rem;
+        font-style: italic;
+        opacity: 0.6;
+        margin: 0 0 1rem;
+      }
+
+      .hero-intro {
+        font-size: 1rem;
+        line-height: 1.75;
+        margin: 0 0 1.5rem;
+      }
+
+      .hero-ctas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      .hero-cta {
+        display: inline-block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.45em 1.15em;
+        border-radius: 0.4em;
+        border: 2px solid var(--color-accent);
+        color: var(--color-accent);
+        transition: background 150ms;
+      }
+
+      .hero-cta:hover {
+        background: color-mix(in oklch, var(--color-accent), canvas 80%);
+      }
+
+      .hero-cta.primary {
+        background: var(--color-accent);
+        color: oklch(12% 0.02 120);
+      }
+
+      .hero-cta.primary:hover {
+        background: color-mix(in oklch, var(--color-accent), canvastext 20%);
+      }
+
+      .hero-photo {
+        width: clamp(130px, 16vw, 210px);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center 20%;
+        border: 3px solid color-mix(in oklch, var(--color-accent), canvas 45%);
+        display: block;
+      }
+
+      /* ── Section wrapper ───────────────────────────────────── */
+      .home-section {
+        margin-block: 2.5rem;
+      }
+
+      .home-section > h2 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+
+      /* ── About ─────────────────────────────────────────────── */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2.5rem;
+        align-items: start;
+      }
+
+      .about-text p {
+        font-size: 1rem;
+        line-height: 1.75;
+        margin: 0 0 0.9rem;
+      }
+
+      .about-text p:last-child { margin-bottom: 0; }
+
+      .about-photo {
+        width: clamp(100px, 11vw, 150px);
+        border-radius: 0.6rem;
+        display: block;
+        opacity: 0.9;
+      }
+
+      /* ── Skills ────────────────────────────────────────────── */
+      .skill-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 1rem;
+      }
+
+      .skill-chip {
+        font-size: 0.82rem;
+        font-weight: 500;
+        padding: 0.22em 0.72em;
+        border-radius: 1em;
+        background: color-mix(in oklch, var(--color-accent), canvas 82%);
+        color: canvastext;
+      }
+
+      .interests-text {
+        font-size: 0.97rem;
+        line-height: 1.75;
+        margin: 0;
+        opacity: 0.88;
+      }
+
+      /* ── Responsive ────────────────────────────────────────── */
+      @media (max-width: 640px) {
+        .hero {
+          grid-template-columns: 1fr;
+          padding-top: 1.25rem;
+        }
+        .hero-photo {
+          width: 110px;
+          justify-self: center;
+          order: -1;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .about-photo {
+          width: 90px;
+        }
+      }
+    </style>
 </head>
 
-    
-
 <body>
-    
 
-    <h1>Joshua Huang</h1>
-    <p>Hi, I’m Joshua Huang, I'm a 3rd year data science student at University of California, San Diego. This portfolio will showcases my projects, past experiences, and a little bit about myself.
-    </p>
+  <!-- ── Hero ─────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div>
+      <h1>Joshua Huang</h1>
+      <p class="hero-tagline">Data Science &amp; Business Analytics · UC San Diego</p>
+      <p class="hero-intro">
+        Third-year Data Science student at UC San Diego. I build end-to-end data systems —
+        ETL pipelines, machine learning models, and interactive dashboards — and turn technical
+        analysis into decisions people can actually act on. My work spans energy research,
+        predictive sports analytics, and food access platforms, and has been validated in the field
+        by real practitioners.
+      </p>
+      <div class="hero-ctas">
+        <a href="projects/" class="hero-cta primary">View Projects</a>
+        <a href="resume/" class="hero-cta">Resume</a>
+        <a href="https://github.com/joshuaamm7" class="hero-cta" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a href="https://linkedin.com/in/joshuahuang22" class="hero-cta" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      </div>
+    </div>
+    <img src="image/hs.png" alt="Joshua Huang" class="hero-photo">
+  </section>
 
+  <!-- ── Latest Projects ───────────────────────────────────────── -->
+  <section class="home-section">
     <h2>Latest Projects</h2>
-        <div class="projects">
-    <!-- JS will fill this -->
-        </div>
-    
-    <h2>My GitHub Profile</h2>
-    <div id="profile-stats"></div>
+    <div class="projects">
+      <!-- Filled by index.js -->
+    </div>
+  </section>
 
-    <ul>
-        <li>
-            <p>
-    I have worked on several data science projects, including data visualization,
-    statistical analysis, and real-world data exploration. These projects focus on
-    extracting insights and communicating them effectively.
-        </p>
-
-        </li>
-    </ul>
-    
-    <h2>Skills & Interests</h2>
-        <p>
-        My interests lie in data science, particularly in data visualization, predictive modeling, 
-        and applied machine learning. Through projects such as my NBA player prediction model and energy data dashboard, 
-        I have developed experience using Python, SQL, and visualization tools to transform raw data into actionable insights. 
-        I am especially interested in using data to support decision-making and solve real-world problems.
-        </p>
-
-    <h3>This is a picture of myself</h3>
-
+  <!-- ── About Me ──────────────────────────────────────────────── -->
+  <section class="home-section">
     <h2>About Me</h2>
-    <p>
-    Outside of academics, I enjoy photography and spending time with my cat.
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          My interest in performance started with sports — basketball and F1 — where I was
+          always drawn to the strategy and decisions behind outcomes. Over time, that curiosity
+          evolved into using data to understand complex systems and improve decisions, which is
+          what led me to data science.
+        </p>
+        <p>
+          Most recently, I led a team of five at the Center for Energy Research at UCSD,
+          analyzing how EV adoption impacts oil imports and building tools that turned that
+          analysis into something executives could actually use. I also built an NBA G-League
+          call-up predictor whose model outputs were later validated by an NBA scout —
+          probably the most satisfying real-world feedback I've gotten on a project so far.
+        </p>
+        <p>
+          Outside of academics, I enjoy photography and spending time with my cat.
+        </p>
+      </div>
+      <img src="image/blackcat.png" alt="My cat" class="about-photo">
+    </div>
+  </section>
+
+  <!-- ── Skills & Interests ────────────────────────────────────── -->
+  <section class="home-section">
+    <h2>Skills &amp; Interests</h2>
+    <div class="skill-chips">
+      <span class="skill-chip">Python</span>
+      <span class="skill-chip">SQL</span>
+      <span class="skill-chip">JavaScript</span>
+      <span class="skill-chip">D3.js</span>
+      <span class="skill-chip">React</span>
+      <span class="skill-chip">Pandas</span>
+      <span class="skill-chip">NumPy</span>
+      <span class="skill-chip">Scikit-learn</span>
+      <span class="skill-chip">XGBoost</span>
+      <span class="skill-chip">Streamlit</span>
+      <span class="skill-chip">Power BI</span>
+      <span class="skill-chip">Excel</span>
+      <span class="skill-chip">Azure</span>
+    </div>
+    <p class="interests-text">
+      I'm drawn to problems at the intersection of data and real-world operations — business
+      analysis, program management, and data-driven strategy. I want to work on ambiguous
+      problems and turn complex data into clear, actionable direction. Beyond the technical
+      work, I care about how insights get communicated and actually used.
     </p>
-    <p>This is a picture of me</p>
-    <img src="image/hs.png" alt="Me" width="500"/>
+  </section>
 
-    <p>And this is a cute picture of my cat</p>
-    <img src="image/blackcat.png" alt="This is a black cat" width="500"/>
+  <!-- ── GitHub Activity ───────────────────────────────────────── -->
+  <section class="home-section">
+    <h2>GitHub Activity</h2>
+    <div id="profile-stats"></div>
+  </section>
 
-    
 </body>
 </html>

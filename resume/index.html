@@ -2,137 +2,424 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Joshua Huang | Resume</title>
   <link rel="stylesheet" href="../style.css">
   <script type="module" src="../global.js"></script>
+  <style>
+    /* ── Resume header ───────────────────────────────────── */
+    .resume-header {
+      padding: 1rem 0 0.9rem;
+      border-bottom: 2px solid var(--color-accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .resume-header h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      margin: 0 0 0.2rem;
+      line-height: 1.1;
+    }
+
+    .resume-tagline {
+      margin: 0 0 0.75rem;
+      font-size: 1rem;
+      font-style: italic;
+      opacity: 0.65;
+    }
+
+    .resume-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.6rem;
+      margin-top: 0.25rem;
+    }
+
+    .resume-contact a {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      text-decoration: none;
+      border: 1.5px solid color-mix(in oklch, var(--color-accent), canvas 35%);
+      padding: 0.28em 0.85em;
+      border-radius: 2em;
+      transition: background 150ms;
+    }
+
+    .resume-contact a:hover {
+      background: color-mix(in oklch, var(--color-accent), canvas 82%);
+    }
+
+    /* ── Sections ────────────────────────────────────────── */
+    .resume-section { margin-bottom: 2rem; }
+    .resume-section:first-of-type { margin-bottom: 1.5rem; }
+
+    .resume-section > h2 {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent);
+      border-bottom: 1px solid color-mix(in oklch, var(--color-accent), canvas 55%);
+      padding-bottom: 0.4rem;
+      margin: 0 0 1.1rem;
+    }
+
+    /* ── Entry cards (experience / education / project) ──── */
+    .resume-entry {
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      background: color-mix(in oklch, canvas, canvastext 5%);
+      border-left: 3px solid var(--color-accent);
+      border-radius: 0 0.4rem 0.4rem 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.2rem 1rem;
+    }
+
+    .resume-role {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .resume-date {
+      font-size: 0.82rem;
+      opacity: 0.6;
+      white-space: nowrap;
+    }
+
+    .resume-meta {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin: 0.2rem 0 0.6rem;
+    }
+
+    /* ── Bullet lists ────────────────────────────────────── */
+    .resume-bullets {
+      margin: 0.5rem 0 0;
+      padding-left: 1.2rem;
+      line-height: 1.65;
+    }
+
+    .resume-bullets li {
+      margin-bottom: 0.3rem;
+      font-size: 0.93rem;
+    }
+
+    /* ── Project link pills ──────────────────────────────── */
+    .resume-links {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .resume-links a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      text-decoration: none;
+      border: 1px solid color-mix(in oklch, var(--color-accent), canvas 40%);
+      padding: 0.1em 0.55em;
+      border-radius: 0.35em;
+      line-height: 1.6;
+    }
+
+    .resume-links a:hover {
+      background: color-mix(in oklch, var(--color-accent), canvas 82%);
+    }
+
+    /* ── Skills ──────────────────────────────────────────── */
+    .resume-skills {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .skill-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .skill-group-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.55;
+      white-space: nowrap;
+      min-width: 9.5rem;
+      padding-top: 0.3em;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .skill-tag {
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.2em 0.7em;
+      border-radius: 1em;
+      background: color-mix(in oklch, var(--color-accent), canvas 82%);
+      color: canvastext;
+    }
+
+    /* ── Summary ─────────────────────────────────────────── */
+    .resume-summary {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .resume-entry-header { flex-direction: column; }
+      .skill-group { flex-direction: column; gap: 0.4rem; }
+      .skill-group-label { min-width: unset; }
+    }
+  </style>
 </head>
 
 <body>
 
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header class="resume-header">
+    <h1>Joshua Huang</h1>
+    <p class="resume-tagline">Data Science · Analytics · Machine Learning · Visualization</p>
+    <div class="resume-contact">
+      <a href="tel:+15105201825">(510) 520-1825</a>
+      <a href="mailto:joh095@ucsd.edu">joh095@ucsd.edu</a>
+      <a href="https://linkedin.com/in/joshuahuang22" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      <a href="https://github.com/joshuaamm7" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </div>
+  </header>
 
+  <!-- ── Summary ────────────────────────────────────────── -->
+  <section class="resume-section">
+    <h2>Summary</h2>
+    <p class="resume-summary">
+      Third-year Data Science student at UC San Diego specializing in data visualization, predictive
+      modeling, and analytics engineering. Hands-on experience building ETL pipelines, ML models, and
+      interactive dashboards across energy research, supply chain operations, and hackathon projects.
+      Seeking data science, analytics, and software-adjacent roles where I can turn raw data into
+      actionable insights.
+    </p>
+  </section>
 
-<h1>Joshua Huang</h1>
-
-<!-- Education -->
-<section>
-  <header>
+  <!-- ── Education ──────────────────────────────────────── -->
+  <section class="resume-section">
     <h2>Education</h2>
-  </header>
 
-  <article>
-    <h3>University of California, San Diego</h3> 
-    <h4>Halıcıoğlu Data Science Institute – UC San Diego</h4>
-    <p>
-        <ul>
-        Major: Data Science
-        <time>2023</time> – <time>2027</time>
-        </ul>
-    </p>
-    <p>
-      
-    </p>
-  </article>
-</section>
+    <div class="resume-entry">
+      <div class="resume-entry-header">
+        <span class="resume-role">University of California, San Diego</span>
+        <span class="resume-date">2023 – Jun 2027</span>
+      </div>
+      <p class="resume-meta">
+        B.S. Data Science · Business Analytics Minor · Halıcıoğlu Data Science Institute
+      </p>
+    </div>
 
-<!-- Experience -->
-<section>
-  <header>
-    <h2>Work Experience</h2>
-  </header>
-  <article>
-    <h3>Data Science Consultant – Center for Energy Research(CER) UCSD, San Diego</h3>
-    <p>
-        <time>Jan 2026</time> – <time>Present</time>
-    </p>
-    <ul>
-        <li>Synthesized complex oil trade datasets into actionable insights to define the roadmap for a global energy
-        security analysis, providing a 10-year forecast to assist long-term energy infrastructure planning.</li>
-        <li>Evaluated the value of the expanding EV market by developing a Dynamic Dashboard to monitor growth
-        projections and assess the feasibility of reducing national reliance on traditional petroleum infrastructures.</li>
-        <li>Translated complex technical methodologies into strategic recommendations for executive leadership,
-        presenting data-driven insights on energy trends to the Director to facilitate high-level decision-making.</li>
-    </ul>
-  </article>
+    <div class="resume-entry">
+      <div class="resume-entry-header">
+        <span class="resume-role">De Anza College</span>
+        <span class="resume-date">Graduated Jun 2025</span>
+      </div>
+      <p class="resume-meta">A.A. Mathematics · GPA: 3.89 / 4.0</p>
+    </div>
+  </section>
 
-  <article>
-    <h3>Supply Chain & Data Analyst Intern – Xiang-Shan Temple Enterprise, Hsinchu</h3>
-    <p>
-      <time>June 2025</time> – <time>Aug 2025</time>
-    </p>
-    <ul>
-      <li>Designed and implemented an Excel-based data pipeline for inventory tracking, enhancing process efficiency by
-        50% and providing accurate real-time reporting to support decision-making in sales. </li>
-      <li>Spearheaded the development of an e-donation system and religious service platform, improving organizational
-        revenue by 30% through optimized procurement, cutting costs and preventing food waste.</li>
-      <li>Directed a data-informed fundraising that raised $20K+, distributing 2,100 kg of rice and 700 food packs for
-        earthquake recovery to support 200+ families in need, strengthening community disaster response capacity.</li>
-    </ul>
-  </article>
+  <!-- ── Experience ─────────────────────────────────────── -->
+  <section class="resume-section">
+    <h2>Experience</h2>
 
-  <article>
-    <h3>Data Analyst Intern – Jian-Cang Co., New Taipei City</h3>
-    <p>
-      <time>June 2024</time> – <time>Aug 2024</time>
-    </p>
-    <ul>
-      <li>Conducted data validation and quality checks on production and material datasets using Python and Excel to
-        ensure operational consistency</li>
-      <li>Built automated Excel dashboards to track production metrics, improving visibility and decision-making</li>
-      <li>Analyzed material quality trends and identified anomalies early to support proactive issue resolution</li>
-      <li>Delivered data-driven insights through cross-functional collaboration, improving reporting efficiency.</li>
-    </ul>
-  </article>
+    <div class="resume-entry">
+      <div class="resume-entry-header">
+        <span class="resume-role">Data Science Consultant</span>
+        <span class="resume-date">Jan 2026 – May 2026</span>
+      </div>
+      <p class="resume-meta">Center for Energy Research (CER) via DS3 UCSD · San Diego, CA</p>
+      <ul class="resume-bullets">
+        <li>Synthesized complex oil trade datasets to define the roadmap for a global energy security
+          analysis, delivering a <strong>10-year forecast</strong> for long-term infrastructure planning.</li>
+        <li>Built a <strong>Dynamic Dashboard</strong> monitoring EV market growth projections across
+          <strong>50+ countries</strong> to assess feasibility of reducing national petroleum dependency.</li>
+        <li>Translated technical methodologies into executive-level recommendations, presenting
+          data-driven energy insights directly to the Director.</li>
+      </ul>
+    </div>
 
-</section>
+    <div class="resume-entry">
+      <div class="resume-entry-header">
+        <span class="resume-role">Supply Chain &amp; Data Analyst</span>
+        <span class="resume-date">Jun 2025 – Aug 2025</span>
+      </div>
+      <p class="resume-meta">Xiang-Shan Temple Enterprise · Hsinchu, Taiwan</p>
+      <ul class="resume-bullets">
+        <li>Designed an Excel-based inventory tracking pipeline, improving process efficiency by
+          <strong>50%</strong> with accurate real-time reporting for sales decisions.</li>
+        <li>Developed an e-donation and service platform that increased organizational revenue by
+          <strong>30%</strong> through optimized procurement and waste reduction.</li>
+        <li>Directed a data-informed fundraising campaign raising <strong>$20K+</strong>, distributing
+          <strong>2,100 kg of rice</strong> and <strong>700 food packs</strong> to
+          <strong>200+ families</strong> in earthquake recovery.</li>
+      </ul>
+    </div>
 
-<!-- Projects -->
-<section>
-  <header>
+    <div class="resume-entry">
+      <div class="resume-entry-header">
+        <span class="resume-role">Data Analyst Intern</span>
+        <span class="resume-date">Jun 2024 – Aug 2024</span>
+      </div>
+      <p class="resume-meta">Jian-Cang Co. · New Taipei City, Taiwan</p>
+      <ul class="resume-bullets">
+        <li>Conducted data validation and quality checks on production datasets using
+          <strong>Python</strong> and Excel to ensure operational consistency.</li>
+        <li>Built automated Excel dashboards tracking production metrics to improve
+          visibility and decision-making.</li>
+        <li>Analyzed material quality trends and flagged anomalies early to support
+          proactive issue resolution.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Projects ───────────────────────────────────────── -->
+  <section class="resume-section">
     <h2>Projects</h2>
-    <a href="https://github.com/joshuaamm7" target="_blank">
-  View on GitHub
-    </a>
-  </header>
 
-  <article>
-    <h3>Energy Dashboard</h3>
-    <p>
-        <ul>
-            <li>
-                Analyzed EV adoption and oil imports using data visualization tools.
-            </li>
-        </ul>
+    <div class="resume-entry">
+      <div class="resume-entry-header">
+        <span class="resume-role">NBA G-League Call-Up Predictor</span>
+        <span class="resume-links">
+          <!-- Replace # with your live Streamlit app URL -->
+          <a href="#" target="_blank" rel="noopener noreferrer">Live App</a>
+          <a href="https://github.com/joshuaamm7" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </span>
+      </div>
+      <p class="resume-meta">Python · Scikit-Learn · XGBoost · Streamlit · SportsRadar API</p>
+      <ul class="resume-bullets">
+        <li>Built a full-stack system with an automated <strong>SportsRadar API ETL pipeline</strong>
+          aggregating player stats, contract logs, and rosters across
+          <strong>5 seasons (2019–2024)</strong>.</li>
+        <li>Developed <strong>Logistic Regression and XGBoost</strong> models that identify
+          <strong>82% of potential NBA call-up candidates</strong> from an imbalanced G-League dataset.</li>
+        <li>Deployed a <strong>Streamlit web app</strong> with interactive call-up simulators and
+          SHAP visualizations for model explainability.</li>
+      </ul>
+    </div>
 
-    </p>
-    <a href="../projects/index.html">View Project</a>
-  </article>
+    <div class="resume-entry">
+      <div class="resume-entry-header">
+        <span class="resume-role">Global Energy Dependency Dashboard</span>
+        <span class="resume-links">
+          <!-- Replace # with your live dashboard URL -->
+          <a href="#" target="_blank" rel="noopener noreferrer">Live App</a>
+          <a href="https://github.com/joshuaamm7" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </span>
+      </div>
+      <p class="resume-meta">Python · Scikit-Learn · Matplotlib · D3.js · ARIMA</p>
+      <ul class="resume-bullets">
+        <li>Analyzed IEA oil trade and EV sales data across <strong>50+ countries</strong> spanning
+          1971–2023, with forecasts through <strong>2035</strong> using ARIMA and logistic
+          S-curve models.</li>
+        <li>Transformed raw datasets into interactive D3.js visualizations supporting policy
+          and infrastructure decision-making.</li>
+      </ul>
+    </div>
 
-  <article>
-    <h3>Next Up: NBA G-League Call-Up Predictor</h3>
-    <p>
-        <ul>
-            <li>Developed a full-stack system using an automated SportsRadar API ETL pipeline to aggregate player
-statistics, official contract logs, and team rosters across 5 seasons (2019–2024).</li>
-        </ul>
-      
-    </p>
-    <a href="../projects/index.html">View Project</a>
-  </article>
-</section>
+    <div class="resume-entry">
+      <div class="resume-entry-header">
+        <span class="resume-role">NourishOne – Food Pantry Access Platform</span>
+        <span class="resume-links">
+          <a href="https://github.com/joshuaamm7" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </span>
+      </div>
+      <p class="resume-meta">React · Leaflet · Python · JSON · Hackathon (72 hrs)</p>
+      <ul class="resume-bullets">
+        <li>Led data engineering for a 72-hour hackathon, aggregating and validating
+          <strong>737 food pantry locations</strong> across DC, Maryland, and Virginia using Python.</li>
+        <li>Integrated geocoded JSON into a React + Leaflet map with filters for food type,
+          dietary needs, distance, and language access.</li>
+      </ul>
+    </div>
+  </section>
 
-<!-- Skills -->
-<section>
-  <header>
+  <!-- ── Skills ─────────────────────────────────────────── -->
+  <section class="resume-section">
     <h2>Skills</h2>
-  </header>
+    <div class="resume-skills">
 
-  <ul>
-    <li>Python (NumPy, Pandas)</li>
-    <li>Data Visualization</li>
-    <li>SQL</li>
-    <li>Excel</li>
-  </ul>
-</section>
+      <div class="skill-group">
+        <span class="skill-group-label">Languages</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">HTML / CSS</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <span class="skill-group-label">Libraries</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">Seaborn</span>
+          <span class="skill-tag">Matplotlib</span>
+          <span class="skill-tag">D3.js</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">XGBoost</span>
+          <span class="skill-tag">Streamlit</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <span class="skill-group-label">Platforms</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Excel</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">GitHub</span>
+          <span class="skill-tag">Azure</span>
+          <span class="skill-tag">Adobe Suite</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <span class="skill-group-label">Competencies</span>
+        <div class="skill-tags">
+          <span class="skill-tag">ETL Pipelines</span>
+          <span class="skill-tag">Data Visualization</span>
+          <span class="skill-tag">Predictive Modeling</span>
+          <span class="skill-tag">Process Automation</span>
+          <span class="skill-tag">Data Reporting</span>
+          <span class="skill-tag">Cross-functional Collaboration</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <span class="skill-group-label">Human Languages</span>
+        <div class="skill-tags">
+          <span class="skill-tag">English</span>
+          <span class="skill-tag">Mandarin</span>
+          <span class="skill-tag">Taiwanese</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
 </body>
 </html>
