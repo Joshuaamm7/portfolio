@@ -4,35 +4,35 @@
         "year": "2026",
         "image": "image/energydash.png",
         "description": "This project combines IEA oil import/export data with global EV sales figures across 50+ countries spanning 1971–2023 for oil trade and 2010–2030 for EV sales. Forecasts extend through 2035 using ARIMA and logistic S-curve models.",
-        "link": "#"
+        "link": "https://joshuaamm7.github.io/Energy-Dashboard-DS3/"
     },
     {
         "title": "NBA Call-Up Predictor",
         "year": "2025",
         "image": "image/pre.png",
         "description": "full-stack system using an automated SportsRadar API ETL pipeline to aggregate player statistics, official contract logs, and team rosters across 5 seasons to predict G-Leagues Player's call up rate to a NBA teams.",
-        "link": "#"
+        "link": "https://next-up.streamlit.app/"
     },
     {
         "title": "NourishOne - Find your food pantry",
         "year": "2026",
         "image": "image/no.png",
         "description": "NourishOne is a static React web app that helps people in the DC, Maryland, and Virginia region find food assistance. It aggregates 737 verified food pantry locations into a searchable, filterable, map-driven interface for Donors, Food Pantry, and Volunteers ",
-        "link": "#"
+        "link": "https://nafsi-team-nourish-2djabv3ap-joshuaamm7s-projects.vercel.app/"
     },
     {
         "title": "Boston Bike Map",
         "year":"2026",
         "image": "image/bike.png",
         "description": "The Bike Watching Lab is a D3 and Mapbox visualization lab where you built an interactive map to explore bike traffic patterns. You used Mapbox GL JS for the base map and D3 to overlay bike station or traffic data on top of it. The visualization showed bike traffic volume at different times of day, and later added direction-based information so users could see how traffic flow changes between incoming and outgoing trips.",
-        "link": "#"
+        "link": "https://joshuaamm7.github.io/Bikewatching/"
     },
     {
         "title": "Baron vs. Dragons: A Statistical Analysis of Winning Strategy in League of Legends",
         "year":"2026",
         "image": "image/br1.png",
         "description": "Dragons or Baron? Modeling Objective Control and Win Probability in League of Legends, understanding how different objectives influence the probability of winning can provide insight into effective gameplay strategies.",
-        "link": "#"
+        "link": "https://joshuaamm7.github.io/Project4-Baron_OR_Drags/"
     },
     {
         "title": "Automated Concert Ticket Availability Tracker",
