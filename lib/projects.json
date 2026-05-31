@@ -24,7 +24,7 @@
         "title": "Boston Bike Map",
         "year":"2026",
         "image": "image/bike.png",
-        "description": "The Bike Watching Lab is a D3 and Mapbox visualization lab where you built an interactive map to explore bike traffic patterns. You used Mapbox GL JS for the base map and D3 to overlay bike station or traffic data on top of it. The visualization showed bike traffic volume at different times of day, and later added direction-based information so users could see how traffic flow changes between incoming and outgoing trips.",
+        "description": "The Bike Watching Lab is a D3 and Mapbox visualization lab where I built an interactive map to explore bike traffic patterns. Use Mapbox GL JS for the base map and D3 to overlay bike station or traffic data on top of it. The visualization showed bike traffic volume at different times of day, and later added direction-based information so users could see how traffic flow changes between incoming and outgoing trips.",
         "link": "https://joshuaamm7.github.io/Bikewatching/"
     },
     {
