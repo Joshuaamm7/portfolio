@@ -1,5 +1,3 @@
-console.log("IT’S ALIVE!");
-
 function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
@@ -14,7 +12,6 @@ let pages = [
   { url: "projects/", title: "Projects" },
   { url: "contact/", title: "Contact" },
   { url: "resume/", title: "Resume" },
-  { url: "meta/", title: "Meta"},
   { url: "https://github.com/joshuaamm7", title: "GitHub" },
 ];
 document.body.insertAdjacentHTML(
@@ -83,8 +80,6 @@ export async function fetchJSON(url) {
   try {
     // Step 1: fetch the file
     const response = await fetch(url);
-    console.log(response); // optional: debug
-
     // Step 2: check if request worked
     if (!response.ok) {
       throw new Error(`Failed to fetch projects: ${response.statusText}`);
