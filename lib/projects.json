@@ -1,17 +1,24 @@
 [
     {
-        "title": "Global Energy Dashboard",
-        "year": "2026",
-        "image": "image/energydash.png",
-        "description": "Led a 5-person team at UCSD's Center for Energy Research to build a live dashboard tracking EV market growth and oil import dependency across 50+ countries (1971–2023). Applied ARIMA and logistic S-curve models to generate 10-year energy security forecasts, then presented findings directly to the CER Director to support long-term infrastructure planning.",
-        "link": "https://joshuaamm7.github.io/Energy-Dashboard-DS3/"
-    },
-    {
         "title": "NBA G-League Call-Up Predictor",
         "year": "2025",
         "image": "image/pre.png",
-        "description": "Full-stack prediction system built on an automated SportsRadar API ETL pipeline pulling 5 seasons of G-League player stats, contract logs, and roster data. XGBoost and Logistic Regression models achieve 82% recall on a heavily imbalanced dataset. Deployed as a Streamlit app with interactive simulators and SHAP explainability — model outputs were later validated by an NBA scout.",
+        "description": "Engineered an end-to-end G-League call-up prediction system: automated SportsRadar API ETL pipeline aggregating 5 seasons of player stats, contract logs, and roster data; XGBoost and Logistic Regression models achieving 82% recall on a class-imbalanced dataset; and a deployed Streamlit app with interactive call-up simulators and SHAP feature-importance visualizations. Model outputs were independently validated by an NBA scout.",
         "link": "https://next-up.streamlit.app/"
+    },
+    {
+        "title": "Objective Control & Win Probability in League of Legends",
+        "year": "2026",
+        "image": "image/br1.png",
+        "description": "Analyzed 120,000+ rows of professional esports match data (Oracle's Elixir, 10,053 matches) to determine whether Baron Nashor or Dragon control is the stronger predictor of victory. Applied MNAR missingness analysis, permutation testing (2,000 simulations, p ≈ 0.0), and logistic regression with GridSearchCV — engineering difference features that improved model accuracy from 82.2% (baseline) to 98.9%. Includes fairness testing across game-length subgroups revealing a 26-point accuracy gap on matches under 20 minutes.",
+        "link": "https://joshuaamm7.github.io/Project4-Baron_OR_Drags/"
+    },
+    {
+        "title": "Global Energy Dashboard",
+        "year": "2026",
+        "image": "image/energydash.png",
+        "description": "Led a 5-person CER UCSD consulting team to answer: does EV adoption measurably reduce oil dependency? Merged IEA oil trade and EV sales data across 50+ countries (1971–2023), applied Log-ARIMA forecasting and logistic S-curve modeling to project adoption through 2035, and quantified ~2.4 million barrels/day in oil displaced by EVs in 2023. Delivered a 6-tab interactive dashboard and 10-year forecast directly to the CER Director for infrastructure planning.",
+        "link": "https://joshuaamm7.github.io/Energy-Dashboard-DS3/"
     },
     {
         "title": "NourishOne — Food Pantry Finder",
@@ -21,31 +28,17 @@
         "link": "https://nafsi-team-nourish-2djabv3ap-joshuaamm7s-projects.vercel.app/"
     },
     {
+        "title": "Waymo Expansion & SF Transportation Trends",
+        "year": "2026",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Building a 36-month transportation panel (Jan 2023–Dec 2025) merging five public data sources: Waymo CPUC ride records, 4.1M SF taxi trips, Muni monthly boardings, SFO ground trips, and BART exits. Data cleaning and feature engineering complete; EDA and time-series modeling in progress.",
+        "link": "https://github.com/Joshuaamm7/Math189-Final-Project"
+    },
+    {
         "title": "Boston Bike Map",
         "year": "2026",
         "image": "image/bike.png",
-        "description": "Interactive map built with D3.js and Mapbox GL JS to visualize Boston bike-share traffic patterns by time of day and direction. The visualization reveals how station usage inverts between morning and evening commutes, with real-time filtering that shows volume and directional flow simultaneously.",
+        "description": "Geospatial visualization of Boston Blue Bikes traffic patterns using D3.js and Mapbox GL JS — showing station-level volume and flow direction across time-of-day filters. Demonstrates layered geospatial rendering and real-time data binding in JavaScript.",
         "link": "https://joshuaamm7.github.io/Bikewatching/"
-    },
-    {
-        "title": "Modeling Objective Control in League of Legends",
-        "year": "2026",
-        "image": "image/br1.png",
-        "description": "Analyzed professional League of Legends match data to model how Baron and Dragon objectives each influence win probability. Built classification models to quantify the predictive power of each objective type and tested whether conventional wisdom about Baron vs. Dragon priority holds up statistically.",
-        "link": "https://joshuaamm7.github.io/Project4-Baron_OR_Drags/"
-    },
-    {
-        "title": "San Diego Airbnb Pricing Analysis",
-        "year": "2026",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Analyzed San Diego Airbnb listings to identify what drives pricing — location, property type, availability windows, and listing features. Includes data cleaning, exploratory analysis, regression modeling, and visualizations that surface actionable patterns for hosts and platform analysts.",
-        "link": "https://github.com/Joshuaamm7/Group-SP26-054"
-    },
-    {
-        "title": "Waymo Expansion and SF Transportation Trends",
-        "year": "2026",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Explored how Waymo's driverless ride-hailing expansion in San Francisco correlates with shifts in taxi activity, Muni ridership, and urban transportation demand. Applied time-series analysis to public datasets and built visualizations to identify displacement patterns and modal shift signals across transit modes.",
-        "link": "https://github.com/Joshuaamm7/Math189-Final-Project"
     }
 ]
