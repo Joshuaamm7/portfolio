@@ -4,7 +4,8 @@ import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
 // Module-level scale references so renderScatterPlot and updateScatterPlot share them
 let xScale, yScale;
 
-let colors = d3.scaleOrdinal(d3.schemeTableau10);
+// Muted categorical palette matched to the site theme (slot order matters for CVD separation)
+let colors = d3.scaleOrdinal(['#b08a35', '#5e8fc7', '#bf6d51', '#2fa39a', '#9877cc', '#6da157', '#bd6480', '#5d63c4']);
 
 async function loadData() {
   const data = await d3.csv('loc.csv', (row) => ({
@@ -206,7 +207,7 @@ function brushed(event) {
   .attr('cx', (d) => xScale(d.datetime))
   .attr('cy', (d) => yScale(d.hourFrac))
   .attr('r', (d) => rScale(d.totalLines))
-  .attr('fill', 'steelblue')
+  .attr('fill', '#5e8fc7')
   .style('fill-opacity', 0.7)
   .on('mouseenter', (event, commit) => {
     d3.select(event.currentTarget).style('fill-opacity', 1);
@@ -370,7 +371,7 @@ function updateScatterPlot(data, commits) {
     .attr('cx', (d) => xScale(d.datetime))
     .attr('cy', (d) => yScale(d.hourFrac))
     .attr('r', (d) => rScale(d.totalLines))
-    .attr('fill', 'steelblue')
+    .attr('fill', '#5e8fc7')
     .style('fill-opacity', 0.7)
     .on('mouseenter', (event, commit) => {
       d3.select(event.currentTarget).style('fill-opacity', 1);

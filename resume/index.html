@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Joshua Huang | Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
   <script type="module" src="../global.js"></script>
   <style>
@@ -23,8 +26,9 @@
     .resume-tagline {
       margin: 0 0 0.75rem;
       font-size: 1rem;
+      font-family: var(--font-display);
       font-style: italic;
-      opacity: 0.65;
+      color: var(--text-muted);
     }
 
     .resume-contact {
@@ -39,16 +43,17 @@
       align-items: center;
       font-size: 0.92rem;
       font-weight: 600;
-      color: var(--color-accent);
+      color: var(--accent);
       text-decoration: none;
-      border: 1.5px solid color-mix(in oklch, var(--color-accent), canvas 35%);
+      border: 1px solid color-mix(in oklch, var(--accent), transparent 60%);
       padding: 0.28em 0.85em;
       border-radius: 2em;
-      transition: background 150ms;
+      transition: background var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
     }
 
     .resume-contact a:hover {
-      background: color-mix(in oklch, var(--color-accent), canvas 82%);
+      background: color-mix(in oklch, var(--accent), transparent 88%);
+      border-color: var(--accent);
     }
 
     /* ── Sections ────────────────────────────────────────── */
@@ -56,12 +61,13 @@
     .resume-section:first-of-type { margin-bottom: 1.5rem; }
 
     .resume-section > h2 {
+      font-family: var(--font-body);
       font-size: 0.8rem;
-      font-weight: 800;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--color-accent);
-      border-bottom: 1px solid color-mix(in oklch, var(--color-accent), canvas 55%);
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
       padding-bottom: 0.4rem;
       margin: 0 0 1.1rem;
     }
@@ -70,9 +76,11 @@
     .resume-entry {
       padding: 1rem 1.25rem;
       margin-bottom: 1rem;
-      background: color-mix(in oklch, canvas, canvastext 5%);
-      border-left: 3px solid var(--color-accent);
-      border-radius: 0 0.4rem 0.4rem 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius-m);
+      box-shadow: var(--shadow-1);
     }
 
     .resume-entry-header {
@@ -90,13 +98,14 @@
 
     .resume-date {
       font-size: 0.82rem;
-      opacity: 0.6;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
       white-space: nowrap;
     }
 
     .resume-meta {
       font-size: 0.85rem;
-      opacity: 0.7;
+      color: var(--text-muted);
       margin: 0.2rem 0 0.6rem;
     }
 
@@ -122,16 +131,18 @@
     .resume-links a {
       font-size: 0.78rem;
       font-weight: 600;
-      color: var(--color-accent);
+      color: var(--accent);
       text-decoration: none;
-      border: 1px solid color-mix(in oklch, var(--color-accent), canvas 40%);
+      border: 1px solid color-mix(in oklch, var(--accent), transparent 60%);
       padding: 0.1em 0.55em;
-      border-radius: 0.35em;
+      border-radius: var(--radius-s);
       line-height: 1.6;
+      transition: background var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
     }
 
     .resume-links a:hover {
-      background: color-mix(in oklch, var(--color-accent), canvas 82%);
+      background: color-mix(in oklch, var(--accent), transparent 88%);
+      border-color: var(--accent);
     }
 
     /* ── Skills ──────────────────────────────────────────── */
@@ -153,7 +164,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      opacity: 0.55;
+      color: var(--text-muted);
       white-space: nowrap;
       min-width: 9.5rem;
       padding-top: 0.3em;
@@ -170,8 +181,9 @@
       font-weight: 500;
       padding: 0.2em 0.7em;
       border-radius: 1em;
-      background: color-mix(in oklch, var(--color-accent), canvas 82%);
-      color: canvastext;
+      background: color-mix(in oklch, var(--accent), var(--bg) 88%);
+      border: 1px solid color-mix(in oklch, var(--accent), transparent 75%);
+      color: var(--text);
     }
 
     /* ── Summary ─────────────────────────────────────────── */

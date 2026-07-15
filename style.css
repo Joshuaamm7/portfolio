@@ -3,20 +3,75 @@
 }
 
 :root {
-  --color-accent: oklch(65.602% 0.09892 120.137);
+  /* surfaces */
+  --bg:            light-dark(#f6f4ef, #12151b);
+  --surface:       light-dark(#fdfcf9, #1a1e26);
+  --surface-2:     light-dark(#efece4, #222733);
+  --border:        light-dark(#ddd8cc, #2e3440);
+  --border-strong: light-dark(#c9c3b4, #3a414f);
+  /* ink */
+  --text:          light-dark(#23262c, #e9e7e2);
+  --text-muted:    light-dark(#5d5f66, #a9a69e);
+  /* accent (champagne / bronze) */
+  --accent:        light-dark(#7d600f, #d3b273);
+  --accent-strong: color-mix(in oklch, var(--accent), var(--text) 15%);
+  --on-accent:     light-dark(#ffffff, #131108);
+  --color-accent:  var(--accent); /* legacy alias used by inline page styles */
+  /* chart chrome */
+  --chart-dot:     light-dark(#3a6ea8, #5e8fc7);
+  --grid:          light-dark(#e5e1d6, #262b35);
+  /* background effect */
+  --bg-particle:   light-dark(#8a6b1e, #d3b273);
+  --bg-line:       light-dark(#8f8974, #5b6474);
+  /* elevation, radii, motion, type */
+  --shadow-color:  light-dark(rgb(60 50 20 / 0.10), rgb(0 0 0 / 0.45));
+  --shadow-1: 0 1px 2px var(--shadow-color);
+  --shadow-2: 0 2px 6px var(--shadow-color), 0 12px 32px var(--shadow-color);
+  --radius-s: 0.375rem;
+  --radius-m: 0.625rem;
+  --radius-l: 1rem;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-1: 150ms;
+  --dur-2: 300ms;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 html {
-  accent-color: var(--color-accent);
+  accent-color: var(--accent);
   color-scheme: light dark;
+  /* page background lives on html so the fixed bg canvas (z-index -1) stays visible */
+  background-color: var(--bg);
 }
 
 body {
-  max-width: min(1300px, 90vw);
+  max-width: min(1200px, 92vw);
   margin: 0 auto;
-  padding: 0.5rem 1.5rem;
-  background-color: canvas;
-  color: canvastext;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* Ambient wash — static fallback layer beneath the constellation canvas */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(1100px 700px at 85% -10%, color-mix(in oklch, var(--accent), transparent 93%), transparent 60%),
+    radial-gradient(900px 600px at -10% 110%, color-mix(in oklch, var(--chart-dot), transparent 95%), transparent 60%);
+}
+
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
 }
 
 input,
@@ -49,13 +104,18 @@ button {
 /* ─── Navigation ────────────────────────────────────────── */
 
 nav {
-  --border-color: oklch(50% 10% 200 / 40%);
+  position: sticky;
+  top: 0;
+  z-index: 50;
   display: flex;
   gap: 1rem;
   padding: 0.5rem 0;
   align-items: center;
   font-size: 1rem;
-  border-bottom: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
 }
 
 nav ul,
@@ -66,25 +126,28 @@ nav li {
 nav a {
   flex: 1;
   text-decoration: none;
-  color: inherit;
+  color: var(--text-muted);
+  font-weight: 500;
   text-align: center;
   padding: 0.5em;
+  border-bottom: 2px solid transparent;
+  transition: color var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
 }
 
 nav a.current {
-  border-bottom: 0.4em solid var(--color-accent);
-  padding-bottom: 0.1em;
+  color: var(--text);
+  border-bottom-color: var(--accent);
 }
 
-nav a:hover {
-  border-bottom: 0.4em solid var(--color-accent);
-  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+nav a:hover:not(.current) {
+  color: var(--text);
+  border-bottom-color: color-mix(in oklch, var(--accent), transparent 50%);
 }
 
 /* ─── Headings ──────────────────────────────────────────── */
 
 h1 {
-  font-size: 400%;
+  font-size: clamp(2.5rem, 6vw, 4rem);
 }
 
 h1,
@@ -93,8 +156,32 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
   line-height: 1.1;
   text-wrap: balance;
+}
+
+a {
+  color: var(--accent);
+  transition: color var(--dur-1) var(--ease);
+}
+
+a:hover {
+  color: var(--accent-strong);
+}
+
+code {
+  font-family: var(--font-mono);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: color-mix(in oklch, var(--accent), transparent 70%);
 }
 
 /* ─── Theme selector ────────────────────────────────────── */
@@ -103,12 +190,22 @@ h6 {
   position: absolute;
   top: 1rem;
   right: 1rem;
+  z-index: 60;
   font-size: 80%;
+  color: var(--text-muted);
   display: flex;
   align-items: center;
   gap: 0.5rem;
   grid-column: auto;
   grid-template-columns: none;
+}
+
+.color-scheme select {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  padding: 0.2em 0.5em;
 }
 
 /* ─── Profile stats ─────────────────────────────────────── */
@@ -122,7 +219,7 @@ h6 {
 #profile-stats dt {
   grid-row: 1;
   font-weight: bold;
-  color: gray;
+  color: var(--text-muted);
   text-transform: uppercase;
 }
 
@@ -143,19 +240,34 @@ h6 {
 .projects img {
   width: 100%;
   height: auto;
+  border-radius: var(--radius-m);
 }
 
 .projects article {
-  padding: 1.25em;
-  background-color: color-mix(in oklch, canvas, canvastext 5%);
+  padding: 1.5em;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-1);
+  transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
 }
 
 .projects article:hover {
   transform: translateY(-4px);
+  box-shadow: var(--shadow-2);
+  border-color: color-mix(in oklch, var(--accent), var(--border) 55%);
 }
 
 .projects h2 {
   margin: 0;
+}
+
+.projects article > p:first-of-type strong {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
 }
 
 .project-link {
@@ -195,7 +307,7 @@ h6 {
 }
 
 .selected {
-  --color: oklch(60% 45% 0) !important;
+  --color: var(--accent) !important;
 }
 
 .selected:is(path) {
@@ -208,8 +320,9 @@ h6 {
   grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
   gap: 1em;
   padding: 1em;
-  border: 1px solid #ccc;
-  border-radius: 0.5em;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  background: var(--surface);
   list-style: none;
 }
 
@@ -236,18 +349,20 @@ h6 {
   padding: 0.75em 1em;
   margin-block: 1.5em;
   font-size: 1.1rem;
-  border: 2px solid var(--color-accent);
-  border-radius: 0.5em;
-  background-color: canvas;
-  color: canvastext;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  background-color: var(--surface);
+  color: var(--text);
+  transition: border-color var(--dur-1) var(--ease);
 }
 
 .searchBar::placeholder {
-  color: color-mix(in oklch, canvastext, canvas 45%);
+  color: var(--text-muted);
 }
 
 .searchBar:focus {
-  outline: 3px solid color-mix(in oklch, var(--color-accent), canvas 60%);
+  border-color: var(--accent);
+  outline: 3px solid color-mix(in oklch, var(--accent), transparent 70%);
   outline-offset: 2px;
 }
 
@@ -261,25 +376,51 @@ h6 {
 }
 
 .stats dt {
-  font-weight: bold;
-  color: color-mix(in oklch, canvastext, canvas 35%);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
 }
 
 .stats dd {
   margin: 0;
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ─── Gridlines ─────────────────────────────────────────── */
 
 .gridlines line {
-  stroke: currentColor;
-  stroke-opacity: 0.15;
+  stroke: var(--grid);
+  stroke-opacity: 1;
 }
 
 .gridlines path {
   display: none;
+}
+
+/* ─── Axes & scatter dots (overrides D3 presentation attrs) ─ */
+
+.x-axis text,
+.y-axis text {
+  fill: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.x-axis path.domain,
+.y-axis path.domain,
+.x-axis line,
+.y-axis line {
+  stroke: var(--border-strong);
+}
+
+.dots circle {
+  fill: var(--chart-dot);
 }
 
 /* ─── Tooltip & info ────────────────────────────────────── */
@@ -292,7 +433,7 @@ h6 {
 }
 
 .info dt {
-  color: color-mix(in oklch, canvastext, canvas 40%);
+  color: var(--text-muted);
   font-weight: bold;
 }
 
@@ -304,12 +445,12 @@ h6 {
   position: fixed;
   top: 1em;
   left: 1em;
-  background: color-mix(in oklch, canvas, canvastext 5%);
-  color: canvastext;
-  border: 1px solid color-mix(in oklch, canvastext, canvas 75%);
-  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-m);
   padding: 1rem;
-  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.18);
+  box-shadow: var(--shadow-2);
   backdrop-filter: blur(0.5rem);
   z-index: 10;
 }
@@ -359,21 +500,25 @@ dl.info[hidden]:not(:hover, :focus-within) {
 
 .stat-card {
   padding: 0.75rem 0;
-  border-top: 1px solid color-mix(in oklch, currentColor 20%, transparent);
+  border-top: 1px solid var(--border);
 }
 
 .stat-card dt {
   margin: 0 0 0.25rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  opacity: 0.6;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
 }
 
 .stat-card dd {
   margin: 0;
   font-size: clamp(1.3rem, 2.8vw, 2rem);
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.1;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ─── Time slider ───────────────────────────────────────── */
@@ -396,7 +541,8 @@ dl.info[hidden]:not(:hover, :focus-within) {
 
 #commit-time {
   font-size: 0.9rem;
-  opacity: 0.75;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ─── Circles (scatter plot) ────────────────────────────── */
@@ -416,7 +562,7 @@ circle:hover {
 }
 
 circle.selected {
-  fill: #ff6b6b;
+  fill: var(--accent);
 }
 
 /* ─── Brush selection ───────────────────────────────────── */
@@ -428,9 +574,10 @@ circle.selected {
 }
 
 .selection {
-  fill-opacity: 0.1;
-  stroke: currentColor;
-  stroke-opacity: 0.7;
+  fill: var(--accent);
+  fill-opacity: 0.08;
+  stroke: var(--accent);
+  stroke-opacity: 0.8;
   stroke-dasharray: 5 3;
   animation: marching-ants 2s linear infinite;
 }
@@ -445,6 +592,20 @@ circle.selected {
 
   #projects-pie-plot {
     align-self: center;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    gap: 0;
+    font-size: 0.9rem;
+  }
+
+  nav a {
+    padding: 0.4em 0.5em;
+  }
+
+  #chart {
+    padding-left: 1.5rem;
   }
 }
 /* ─── Scrollytelling layout ──────────────────────────────── */
@@ -466,12 +627,13 @@ circle.selected {
 
 #scatter-plot {
   position: sticky;
-  top: 1rem;
+  top: 3.5rem;
   align-self: start;
   max-height: 95vh;
   overflow-y: auto;
   z-index: 0;
   padding-bottom: 1rem;
+  scrollbar-color: var(--border-strong) transparent;
 }
 
 .chart-section h2,
@@ -483,6 +645,8 @@ circle.selected {
 #chart {
   width: 100%;
   overflow: visible;
+  /* room for y-axis tick labels that extend left of the SVG viewBox */
+  padding-left: 2.5rem;
 }
 
 #chart svg {
@@ -497,11 +661,11 @@ circle.selected {
 .step {
   margin-bottom: 1.75rem;
   padding: 0.75rem 0 0.75rem 1rem;
-  border-left: 3px solid #555;
-  opacity: 0.55;
+  border-left: 3px solid var(--border-strong);
+  color: var(--text-muted);
   font-size: 0.95rem;
   line-height: 1.5;
-  transition: opacity 200ms, border-color 200ms;
+  transition: color 200ms, border-color 200ms;
 }
 
 .step:last-child {
@@ -513,8 +677,8 @@ circle.selected {
 }
 
 .step.is-active {
-  opacity: 1;
-  border-left-color: currentColor;
+  color: var(--text);
+  border-left-color: var(--accent);
 }
 
 #scatter-story a {
@@ -527,7 +691,7 @@ circle.selected {
 .files-section {
   margin-top: 1.5rem;
   padding-top: 1rem;
-  border-top: 1px solid color-mix(in oklch, currentColor 18%, transparent);
+  border-top: 1px solid var(--border);
 }
 
 #files {
@@ -559,7 +723,7 @@ circle.selected {
 
 #files dt small {
   display: block;
-  opacity: 0.65;
+  color: var(--text-muted);
   font-size: 0.7rem;
   margin-top: 0.15rem;
 }
@@ -605,5 +769,17 @@ circle.selected {
 
   #files dd {
     margin-top: 0.35rem;
+  }
+}
+
+/* ─── Reduced motion ─────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -34,7 +34,8 @@ function renderPieChart(projectsGiven) {
   let arcData = sliceGenerator(data);
   let arcs = arcData.map((d) => arcGenerator(d));
 
-  let colors = d3.scaleOrdinal(d3.schemeTableau10);
+  // Muted categorical palette matched to the site theme (slot order matters for CVD separation)
+  let colors = d3.scaleOrdinal(['#b08a35', '#5e8fc7', '#bf6d51', '#2fa39a', '#9877cc', '#6da157', '#bd6480', '#5d63c4']);
 
   // Clear old pie chart and legend
   let svg = d3.select('#projects-pie-plot');

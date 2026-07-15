@@ -2,10 +2,9 @@ function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
 
-const BASE_PATH =
-  location.hostname === "localhost" || location.hostname === "127.0.0.1"
-    ? "/"
-    : "/portfolio/";
+// Site root = the directory global.js is served from (works locally at any
+// server root, on GitHub Pages under /portfolio/, and after repo renames)
+const BASE_PATH = new URL(".", import.meta.url).pathname;
 
 let pages = [
   { url: "", title: "Home" },
@@ -46,9 +45,8 @@ select.addEventListener("input", function (event) {
 });
 
 
-if ("colorScheme" in localStorage) {
-  setColorScheme(localStorage.colorScheme);
-}
+// Dark is the designed default on first visit; saved preferences still win
+setColorScheme(localStorage.colorScheme ?? "dark");
 
 let nav = document.createElement("nav");
 document.body.prepend(nav);
@@ -137,3 +135,6 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
 export async function fetchGitHubData(username) {
   return fetchJSON(`https://api.github.com/users/${username}`);
 }
+
+// Decorative background only — must never break nav/theme if it fails to load
+import(new URL("./bg.js", import.meta.url).href).catch(() => {});
